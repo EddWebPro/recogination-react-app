@@ -1,17 +1,18 @@
 import React from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
-export default function SpeechRec () {
+function SpeechRec () {
 
-  const startListening = ()=> SpeechRecognition.startListening({continuous:true, language: 'en-IN'})
-  const {trancript, browserSupportSpeechRecognition} = useSpeechRecognition()
+  const startListening = () => SpeechRecognition.startListening({continuous:true, language: 'en-IN'})
+  const {transcript, browserSupportSpeechRecognition} = useSpeechRecognition()
   if (!browserSupportSpeechRecognition){
     return null
   }
   return (
-    <div className='container'>
+    <>
+      <div>
         <p>
-            
+            {transcript}
         </p>
 
         <button 
@@ -20,6 +21,10 @@ export default function SpeechRec () {
         <button
         onClick={SpeechRecognition.stopListening}
         className=''>Stop Listening</button>
-    </div>
+      </div>
+    </>
+    
   )
 }
+
+export default SpeechRec
